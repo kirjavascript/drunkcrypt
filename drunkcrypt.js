@@ -14,18 +14,14 @@ chunk=([...b],n)=>0 in b?[b,...chunk(b.splice(n),n)]:b
 
 // miller-rabin
 isPrime = (n, k = 5) => {
-  if (n < 2n || n % 2n === 0n) return false;
+  if (n < 2n || n % 2n === 0n) return n === 2n;
   let s = 0n, d = n - 1n;
   while (d % 2n === 0n) d /= 2n, s++;
-  loop: while (k--) {
-    const a = 2n + randRange(2n, n - 2n);
-    let x = modPow(a, d, n);
+  while (k--) {
+    let x = modPow(2n + randRange(2n, n - 2n), d, n);
     if (x === 1n || x === n - 1n) continue;
-    for (let r = 1n; r < s; r++) {
-      x = modPow(x, 2n, n);
-      if (x === n - 1n) continue loop;
-    }
-    return false;
+    for (let r = 1n; r < s && x !== n - 1n; r++) x = modPow(x, 2n, n);
+    if (x !== n - 1n) return false;
   }
   return true;
 }
@@ -115,7 +111,6 @@ constants=asciiTo32('expand 32-byte k')
 block=(key, counter, nonce)=>{
     state = [...constants, ...key, counter, ...nonce]
     copy = [...state]
-
     diagonalRounds = (a=Array(4).fill()).map((_,i)=>a.map((_,j)=>i+4*j));
     columnRounds = a.map((_,i)=>[i,(i+1)%4+4,(i+2)%4+8,(i+3)%4+12]);
 
@@ -123,7 +118,6 @@ block=(key, counter, nonce)=>{
         diagonalRounds.forEach(args => quarterRound(copy, ...args));
         columnRounds.forEach(args => quarterRound(copy, ...args));
     }
-
     for (let i = 0; i < 16; i++) copy[i] = (copy[i] + state[i]) >>> 0;
 
     return copy.flatMap(value=>[value,(value>>>8),(value>>>16),(value>>24)].map(v=>v&0xff));

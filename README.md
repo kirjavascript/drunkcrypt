@@ -1,6 +1,6 @@
 # drunkcrypt
 
-an attempt to see how reasonably secure E2E cryptography can be implemented from scratch, as simply as possible. the result being quite a loose, unidiomatic, and terse script
+an attempt to see how reasonably secure E2E cryptography can be implemented from scratch, as simple and concise as possible. the result being quite a loose, unidiomatic, and terse script
 
 ## usage
 
