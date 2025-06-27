@@ -47,10 +47,10 @@ Usage:
   node node-cli.js <command> [options]
 
 Commands:
-  generate-keys                               Generate a new key pair
-  encrypt <public-key-path> <message>         Encrypt a message using a public key
-  decrypt <private-key-path> <encrypted-data> Decrypt a message using a private key
-  help                                        Show this help message
+  generate-keys                          Generate a new key pair
+  encrypt <public-key> <message>         Encrypt a message using a public key
+  decrypt <private-key> <encrypted-data> Decrypt a message using a private key
+  help                                   Show this help message
 
 Examples:
   node node-cli.js generate-keys
