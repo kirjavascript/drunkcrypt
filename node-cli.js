@@ -11,6 +11,7 @@ const [,, ...args] = process.argv;
 
 ({
     help,
+    test,
     'generate-keys': generateKeys,
     encrypt: encryptCLI,
     decrypt: decryptCLI,
@@ -56,4 +57,13 @@ Examples:
   node node-cli.js encrypt "Hello world"
   node node-cli.js decrypt "encrypted-base64-string"
   `);
+}
+
+function test() {
+    const { public, private } = getKeyPair();
+    const message = 'unicorn poop 🦄 💩'.repeat(200);
+
+    if (decrypt(encrypt(message, public), private) !== message) {
+        throw new Error('something broke :(');
+    }
 }

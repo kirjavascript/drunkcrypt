@@ -33,11 +33,9 @@ isPrime = (n, k = 5) => {
 // (base^exp) % mod
 modPow = (base, exp, mod) => {
   let r = 1n;
-  base %= mod;
-  while (exp > 0n) {
-    if (exp % 2n) r = r * base % mod;
-    base = base * base % mod;
-    exp /= 2n;
+  for (base %= mod; exp > 0n; exp /= 2n) {
+    if (exp % 2n) r = (r * base) % mod;
+    base = (base * base) % mod;
   }
   return r;
 }
