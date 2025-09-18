@@ -42,8 +42,7 @@ function bigIntBase36(str) {
 }
 
 function help() {
-  console.log(`
-Usage:
+  console.log(`Usage:
   node node-cli.js <command> [options]
 
 Commands:
@@ -55,8 +54,7 @@ Commands:
 Examples:
   node node-cli.js generate-keys
   node node-cli.js encrypt "Hello world"
-  node node-cli.js decrypt "encrypted-base64-string"
-  `);
+  node node-cli.js decrypt "encrypted-base64-string"`);
 }
 
 function test() {
